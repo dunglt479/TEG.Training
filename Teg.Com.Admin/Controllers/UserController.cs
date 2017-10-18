@@ -20,24 +20,25 @@ namespace Teg.Com.Admin.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
-
-            var user = UserServices.SearchFor(x => x.UserName.ToUpper() == loginViewModel.UserName && x.Password == loginViewModel.Password);
-            if (user.Count() > 0)
+            if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(loginViewModel.UserName, loginViewModel.RememberMe);
+                var user = UserServices.SearchFor(x => loginViewModel.UserName.Equals(x.UserName.ToLower())
+                                                       && x.Password.Equals(loginViewModel.Password));
+                if (user.Any())
+                {
+                    FormsAuthentication.SetAuthCookie(loginViewModel.UserName, loginViewModel.RememberMe);
 
-                Session["USER_NAME"] = loginViewModel.UserName;
+                    Session["USER_NAME"] = loginViewModel.UserName;
 
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ModelState.AddModelError(String.Empty, "User Name or Password incorrect.");
-                return View(loginViewModel);
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
+            ViewBag.ErrorMsg = "User name or Password incorrect. Please try again";
+            return View();
         }
     }
 }

@@ -26,9 +26,9 @@ namespace Teg.Com.Admin
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Style.css"));
-            bundles.Add(new StyleBundle("~/Content/login").Include(
-                     "~/Content/bootstrap.css",
-                     "~/Content/Login.css"));
+
+            bundles.Add(new StyleBundle("~/Content/login-style").Include(                    
+                     "~/Content/login.css"));
         }
     }
 }
