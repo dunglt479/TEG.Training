@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Teg.Com.Admin.Models;
+using Teg.Com.Model;
 
 namespace Teg.Com.Admin.Controllers
 {
@@ -18,31 +18,111 @@ namespace Teg.Com.Admin.Controllers
         [HttpPost]
         public ActionResult GetRoom()
         {
+            //var param = Request.Form["query"];
+            var listRooms = RoomServices.SearchFor(x => x.IsDelete == false);
+            var listRoomVm = new List<RoomViewModel>();
+            foreach (var item in listRooms)
+            {
+                var room = new RoomViewModel
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Status = CheckStatus(item.Id)
+                };
+                listRoomVm.Add(room);
+            }
+            return Json(new { ListData = listRoomVm }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Create(RoomViewModel model)
+        {
+            var res = new BaseResponse();
+            if (string.IsNullOrEmpty(model?.Name) || string.IsNullOrEmpty(model.Description))
+            {
+                res.Msg = Constants.MsgFail;
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+
             try
             {
-                //var param = Request.Form["query"];
-                var listRooms = RoomServices.SearchFor(x => x.IsDelete == false);
-                var listRoomVm = new List<RoomViewModel>();
-                foreach (var item in listRooms)
+                var room = new Room
                 {
-                    var room = new RoomViewModel
-                    {
-                        Id = item.Id,
-                        Name = item.Name,
-                        Description = item.Description,
-                        Status = CheckStatus(item.Id)
-                    };
-                    listRoomVm.Add(room);
-                }
-                return Json(new { ListData = listRoomVm }, JsonRequestBehavior.AllowGet);
+                    Name = model.Name,
+                    Description = model.Description,
+                    CreatedBy = "Admin",
+                    CreatedOn = DateTime.Now,
+                    UpdatedBy = "Admin",
+                    UpdatedOn = DateTime.Now
+                };
+
+                RoomServices.Add(room);
+                return Json(res, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                res.Msg = Constants.MsgFail;
+                return Json(res, JsonRequestBehavior.AllowGet);
             }
         }
-       
-        public int CheckStatus(int id)
+
+        [HttpPost]
+        public ActionResult Edit(RoomViewModel model)
+        {
+            var res = new BaseResponse();
+            if (string.IsNullOrEmpty(model?.Name) || string.IsNullOrEmpty(model.Description))
+            {
+                res.Msg = Constants.MsgFail;
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+            try
+            {
+                var room = RoomServices.GetById(model.Id);
+                if (room != null)
+                {
+                    room.Name = model.Name;
+                    room.Description = model.Description;
+                    room.UpdatedOn = DateTime.Now;
+                    room.UpdatedBy = "Admin";
+
+                    RoomServices.Update(room);
+                    return Json(res, JsonRequestBehavior.AllowGet);
+                }
+
+                res.Msg = "Cannot edit this item!";
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                res.Msg = "Cannot edit this item!";
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var res = new BaseResponse();
+            if (id == 0)
+            {
+                res.Msg = Constants.MsgFail;
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+            try
+            {
+                var room = RoomServices.GetById(id);
+                RoomServices.Delete(room);
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                res.Msg = "Cannot delete this item!";
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private int CheckStatus(int id)
         {
             var booking = BookingServices.SearchFor(x => x.Room == id).ToList();
             if (booking.Count > 0)
@@ -56,66 +136,11 @@ namespace Teg.Com.Admin.Controllers
             else
             {
                 var room = RoomServices.GetById(id);
-                if (room.IsActive)
-                {
-                    // status available
-                    return 1;
-                }
-                else
-                {
-                    //status invaiable
-                    return 3;
-                }
+                return room.IsActive ? 1 : 3;
+                //status invaiable
             }
             return 0;
 
         }
-
-        [HttpPost]
-        public ActionResult GetData()
-        {
-            var listData = new List<Example>
-            {
-                new Example
-                {
-                    CategoryId = 1,
-                    CategoryName = "Name 1",
-                    Description = "Desc 1",
-                },
-                new Example
-                {
-                    CategoryId = 2,
-                    CategoryName = "Name 2",
-                    Description = "Desc 1",
-                },
-                new Example
-                {
-                    CategoryId = 3,
-                    CategoryName = "Name 3",
-                    Description = "Desc 1",
-                },
-                new Example
-                {
-                    CategoryId = 4,
-                    CategoryName = "Name 4",
-                    Description = "Desc 1",
-                },
-                new Example
-                {
-                    CategoryId =5,
-                    CategoryName = "Name 5",
-                    Description = "Desc 1",
-                }
-            };
-
-            return Json(new { ListData = listData }, JsonRequestBehavior.AllowGet);
-        }
-    }
-
-    public class Example
-    {
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public string Description { get; set; }
     }
 }

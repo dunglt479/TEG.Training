@@ -151,7 +151,7 @@ var page = {
                     $.ajax({
                         type: "POST",
                         url: "/Room/Delete",
-                        data: { id: formData.CategoryId },
+                        data: { id: formData.Id },
                         dataType: "json",
                         async: false,
                         success: function (resp) {
