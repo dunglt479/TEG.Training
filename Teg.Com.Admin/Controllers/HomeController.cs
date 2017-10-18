@@ -14,10 +14,7 @@ namespace Teg.Com.Admin.Controllers
             {
                 return View();
             }
-            else {
-               return RedirectToAction("Login", "User");
-            }
-                
+            return RedirectToAction("Login", "User");
         }
 
         public ActionResult About()
