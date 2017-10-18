@@ -1,0 +1,9 @@
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\bin\Debug\Teg.Com.DB.dacpac
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\bin\Debug\Teg.Com.DB.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\bin\Debug\Teg.Com.DB.pdb
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\obj\Debug\Model.xml
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\obj\Debug\refactor.xml
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\obj\Debug\postdeploy.sql
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\obj\Debug\predeploy.sql
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\obj\Debug\Teg.Com.DB.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.DB\obj\Debug\Teg.Com.DB.pdb

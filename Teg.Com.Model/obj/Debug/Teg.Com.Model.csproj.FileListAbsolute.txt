@@ -1,0 +1,15 @@
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\bin\Debug\Teg.Com.Model.dll.config
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\bin\Debug\Teg.Com.Model.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\bin\Debug\Teg.Com.Model.pdb
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\bin\Debug\EntityFramework.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\bin\Debug\EntityFramework.xml
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\obj\Debug\Teg.Com.Model.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Model\obj\Debug\Teg.Com.Model.pdb
+D:\TEG\Tranning\Teg.Com.Model\bin\Debug\Teg.Com.Model.dll.config
+D:\TEG\Tranning\Teg.Com.Model\bin\Debug\Teg.Com.Model.dll
+D:\TEG\Tranning\Teg.Com.Model\bin\Debug\Teg.Com.Model.pdb
+D:\TEG\Tranning\Teg.Com.Model\bin\Debug\EntityFramework.dll
+D:\TEG\Tranning\Teg.Com.Model\bin\Debug\EntityFramework.xml
+D:\TEG\Tranning\Teg.Com.Model\obj\Debug\Teg.Com.Model.csprojResolveAssemblyReference.cache
+D:\TEG\Tranning\Teg.Com.Model\obj\Debug\Teg.Com.Model.dll
+D:\TEG\Tranning\Teg.Com.Model\obj\Debug\Teg.Com.Model.pdb

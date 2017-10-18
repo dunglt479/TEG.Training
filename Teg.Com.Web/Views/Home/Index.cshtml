@@ -1,0 +1,155 @@
+﻿@model Teg.Com.Web.Models.BookingViewModel
+@{
+    ViewBag.Title = "Booking Page";
+    //Layout ="~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .radius {
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
+
+    #RoomId-list .k-item {
+        line-height: 1em;
+        min-width: 300px;
+    }
+
+    /* Material Theme padding adjustment*/
+
+    .k-material #customers-list .k-item,
+    .k-material #customers-list .k-item.k-state-hover,
+    .k-materialblack #customers-list .k-item,
+    .k-materialblack #customers-list .k-item.k-state-hover {
+        padding-left: 5px;
+        border-left: 0;
+    }
+
+    #RoomId-list .k-item > span {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+        margin: 20px 10px 10px 5px;
+    }
+
+    #RoomId-list h3 {
+        font-size: 1.2em;
+        font-weight: normal;
+        margin: 0 0 1px 0;
+        padding: 0;
+    }
+
+    #RoomId-list p {
+        margin: 0;
+        padding: 0;
+        font-size: .8em;
+    }
+</style>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-offset-4 col-md-4" style="padding-top:150px">
+        <div class="form-group text-center">
+            <span style="font-weight:bolder;color:white">Booking</span>
+        </div>
+        <div class="form-group text-center">
+            <span style="color:cadetblue ;color:aqua">Choose the room you need</span>
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = "255", placeholder = "Your Name", required = "required" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Company, new { @class = "form-control", maxlength = "255", placeholder = "Company", required = "required" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = "255", placeholder = "Email", required = "required", type = "email" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = "20", placeholder = "Phone Number", required = "required" })
+        </div>
+        <div class="form-group">
+            <hr />
+        </div>
+        <div class="form-group">
+            <input id="From" name="From" placeholder="When will it start?" style="width: 100%;" required />
+        </div>
+        <div class="form-group">
+            <input id="To" name="To" placeholder="When will it end?" style="width: 100%;" required />
+        </div>
+        <div class="form-group">
+
+            <input id="RoomId" name="RoomId" style="width: 100%;"  placeholder="Which room ?"/>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <span class="field-validation-error">
+                    @ViewData.ModelState["RoomId"].Errors[0].ErrorMessage
+                </span>
+            } 
+       
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" id="btnSubmit" class="btn btn-danger radius"> BOOKING IT </button>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#From").kendoDateTimePicker({
+            dateInput: true
+        });
+        $("#To").kendoDateTimePicker({
+            dateInput: true
+        });
+        var data = [];
+        function loadData() {
+            var ajax = $.ajax({
+                url: '@Url.Action("GetRoom", "Home")',
+                type: 'POST',
+                dataType: 'json',
+            });
+            return ajax;
+        }
+        function handleData() {
+            var ajaxCall = loadData();
+            var res = [];
+            ajaxCall.done(function (resp) {
+                $.each(resp.items, function (index, itemData) {
+                    res.push(itemData);
+                });
+                $("#RoomId").kendoDropDownList({
+                    optionLabel: "Which room?",
+                    autoBind: false,
+                    dataTextField: "Name",
+                    dataValueField: "Id",
+                    valueTemplate: '<span>#:data.Name#</span>',
+                    template: '<span class="k-state-default"><span>#: data.Name #</span>'
+                        + '#if( data.Status === 1){#'
+                        + '<span style="background: rgb(152, 0, 0); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span><span> Available</span> #}else if(data.Status === 2) {#'
+                        + '<span style="background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span><span> Provisional</span> #}else {#'
+                        + '<span style="background: rgb(227, 214, 197); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span><span> In Available</span> #}#'
+                        + '<br/><p>#: data.Description #</p></span>'
+                    + '',
+                    dataSource: res,
+                    height: 400
+                });
+
+                //var dropdownlist = $("#RoomId").data("kendoDropDownList");
+            });
+        }
+
+        handleData();
+    });
+    //var form = $("form");
+    //form.validate();
+    //$('#btnSubmit').click(function () {
+    //    var value = $("#RoomId").data("kendoDropDownList").value();
+    //    if (form.valid() && value.length > 0)
+    //    {
+    //         $('form').submit();
+    //    }
+    //});
+
+</script>

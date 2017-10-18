@@ -1,0 +1,12 @@
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Utility\bin\Debug\Teg.Com.Utility.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Utility\bin\Debug\Teg.Com.Utility.pdb
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Utility\obj\Debug\Teg.Com.Utility.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.Utility\obj\Debug\Teg.Com.Utility.pdb
+D:\TEG\Tranning\Teg.Com.Utility\bin\Debug\Teg.Com.Utility.dll
+D:\TEG\Tranning\Teg.Com.Utility\bin\Debug\Teg.Com.Utility.pdb
+D:\TEG\Tranning\Teg.Com.Utility\bin\Debug\SendGrid.dll
+D:\TEG\Tranning\Teg.Com.Utility\bin\Debug\SendGrid.SmtpApi.dll
+D:\TEG\Tranning\Teg.Com.Utility\bin\Debug\SendGridMail.dll
+D:\TEG\Tranning\Teg.Com.Utility\obj\Debug\Teg.Com.Utility.csprojResolveAssemblyReference.cache
+D:\TEG\Tranning\Teg.Com.Utility\obj\Debug\Teg.Com.Utility.dll
+D:\TEG\Tranning\Teg.Com.Utility\obj\Debug\Teg.Com.Utility.pdb

@@ -1,0 +1,14 @@
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\bin\Debug\Teg.Com.IBiz.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\bin\Debug\Teg.Com.IBiz.pdb
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\bin\Debug\Teg.Com.Model.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\bin\Debug\Teg.Com.Model.pdb
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\obj\Debug\Teg.Com.IBiz.csprojResolveAssemblyReference.cache
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\obj\Debug\Teg.Com.IBiz.dll
+D:\TEG\Teg.Com.BookingRoom\Teg.Com.IBiz\obj\Debug\Teg.Com.IBiz.pdb
+D:\TEG\Tranning\Teg.Com.IBiz\bin\Debug\Teg.Com.IBiz.dll
+D:\TEG\Tranning\Teg.Com.IBiz\bin\Debug\Teg.Com.IBiz.pdb
+D:\TEG\Tranning\Teg.Com.IBiz\bin\Debug\Teg.Com.Model.dll
+D:\TEG\Tranning\Teg.Com.IBiz\bin\Debug\Teg.Com.Model.pdb
+D:\TEG\Tranning\Teg.Com.IBiz\obj\Debug\Teg.Com.IBiz.csprojResolveAssemblyReference.cache
+D:\TEG\Tranning\Teg.Com.IBiz\obj\Debug\Teg.Com.IBiz.dll
+D:\TEG\Tranning\Teg.Com.IBiz\obj\Debug\Teg.Com.IBiz.pdb
